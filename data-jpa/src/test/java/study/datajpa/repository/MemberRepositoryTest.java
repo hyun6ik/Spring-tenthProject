@@ -22,6 +22,7 @@ public class MemberRepositoryTest {
     @Test
     public void testMember() throws Exception {
         //given
+        System.out.println("memberRepository.getClass() = " + memberRepository.getClass());
         Member member = new Member("memberA");
         Member savedMember = memberRepository.save(member);
         //when
