@@ -86,21 +86,26 @@ public class MemberRepositoryTest {
 
     @Test
     public void findHelloBy() throws Exception {
-        //given
         List<Member> result = memberRepository.findHelloBy();
-        //when
-
-        //then
-
     }
 
     @Test
     public void findTop3By() throws Exception {
-        //given
         List<Member> top3By = memberRepository.findTop3By();
+    }
+
+    @Test
+    public void NamedQuery() throws Exception {
+        //given
+        Member m1 = new Member("AAA", 10);
+        Member m2 = new Member("AAA", 20);
+
+        memberRepository.save(m1);
+        memberRepository.save(m2);
         //when
-
+        List<Member> result = memberRepository.findByUsername("AAA");
+        Member findMember = result.get(0);
         //then
-
+        assertThat(findMember).isEqualTo(m1);
     }
 }
