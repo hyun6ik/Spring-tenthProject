@@ -178,4 +178,37 @@ public class MemberRepositoryTest {
         }
 
     }
+
+    @Test
+    public void returnType() throws Exception {
+        //given
+        Member m1 = new Member("AAA", 10);
+        Member m2 = new Member("BBB", 20);
+
+        memberRepository.save(m1);
+        memberRepository.save(m2);
+        //when
+        List<Member> aaa = memberRepository.findListByUsername("AAA");
+        Member aaa1 = memberRepository.findMemberByUsername("AAA");
+        Optional<Member> aaa2 = memberRepository.findOptionalByUsername("AAA");
+
+        List<Member> result = memberRepository.findListByUsername("fdsafsdfasdf");
+        
+        //NullPointException 발생할 수 있음
+        Member fdfdfdfd = memberRepository.findMemberByUsername("fdfdfdfd");
+        // 따라서 객체가 Null인지 아닌지 확인할 수 없을 경우 Optional을 넣는게 더 좋은 방법
+        Optional<Member> optional_result = memberRepository.findOptionalByUsername("Optional is useful");
+
+
+        //then
+        System.out.println("aaa = " + aaa);
+        System.out.println("aaa1 = " + aaa1);
+        System.out.println("aaa2 = " + aaa2);
+
+        System.out.println("result = " + result);
+        System.out.println("result.size() = " + result.size());
+        System.out.println("fdfdfdfd = " + fdfdfdfd);
+        System.out.println("optional_result = " + optional_result);
+
+    }
 }
